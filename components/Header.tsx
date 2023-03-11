@@ -2,11 +2,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import React, { FormEvent, useRef } from "react";
 
-interface IHeader {
-  f: JSX.Element;
-}
-
-export const Header = ({ f }: IHeader) => {
+export const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
