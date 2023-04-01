@@ -1,3 +1,4 @@
+import ClientProvider from "../components/ClientProvider";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import "../styles/globals.css";
@@ -15,11 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex bg-[#f7fbff] h-screen">
-        <Sidebar />
-        <main className="p-10 max-w-7xl w-full mx-auto overflow-y-auto">
-          <Header />
-          {children}
-        </main>
+        <ClientProvider>
+          <Sidebar />
+          <main className="p-10 max-w-7xl w-full mx-auto overflow-y-auto">
+            <Header />
+            {children}
+          </main>
+        </ClientProvider>
       </body>
     </html>
   );

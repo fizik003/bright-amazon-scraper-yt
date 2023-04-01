@@ -1,7 +1,7 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["Unscrapable"],
+  "cSpell.words": ["BRIGHTDATA", "firestore", "Unscrapable"],
   "editor.formatOnSave": true,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 80,

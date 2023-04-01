@@ -1,18 +1,40 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useRef } from "react";
+import { toast } from "react-hot-toast";
 
 export const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  const router = useRouter();
+
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const input = inputRef.current?.value;
-    if (input) {
+
+    if (!input) return;
+    const notification = toast.loading(`Starting a Scraper for: ${input}`);
+    if (inputRef.current?.value) {
       inputRef.current.value = "";
     }
 
     try {
-    } catch (error) {}
+      const response = await fetch("/activateScraper", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ search: input }),
+      });
+
+      const { collection_id, start_eta } = await response.json();
+      toast.success("Scrapper Started Successfully", { id: notification });
+      router.push(`/search/${collection_id}`);
+    } catch (error) {
+      toast.error("Whoops... Something Went Wrong!", {
+        id: notification,
+      });
+    }
   };
 
   return (
